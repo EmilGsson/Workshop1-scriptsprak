@@ -50,3 +50,20 @@ Säkerhetskopia
   SW-DR-01
   RT-DR-01
   FW-DR-01
+Type of devices:
+switch: 18
+router: 6
+access_point: 9
+firewall: 5
+load_balancer: 2
+
+Devices with less than 30 days uptime:
+SW-ACCESS-03 | 0 days
+SW-ACCESS-05 | 15 days
+AP-FLOOR2-01 | 12 days
+AP-FLOOR2-02 | 2 days
+SW-LAGER-02 | 23 days
+RT-LAGER-01 | 2 days
+AP-LAGER-02 | 0 days
+SW-MAL-ACC-02 | 8 days
+SW-DC-TOR-02 | 5 days
