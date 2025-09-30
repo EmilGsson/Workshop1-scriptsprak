@@ -6,13 +6,22 @@ import json
 # Read json from products.json to the variable products
 data = json.load(open("network_devices.json", "r", encoding = "utf-8"))
 
+# create a variable that holds our whole text report
 
+report = ""
 #loop location list
 #location lista av "locations" i json-fil
 
 for location in data["locations"]:
     #print the site
-    print (location ["site"])
-    #print hostname devicers on locations
+    report += location ["site"] +"\n"
+    
+        #print hostname devicers on locations
     for device in location ["devices"]:
-        print(" ", device["hostname"])
+        report += "  " + device["hostname"] + "\n"
+
+##write the report to text file
+
+with open('report.txt', 'w', encoding='utf-8') as f:
+    f.write(report)
+    
