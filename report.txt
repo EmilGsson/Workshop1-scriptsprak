@@ -1,9 +1,12 @@
+TechCorp AB | 2024-09-30T10:30:00
+
 Huvudkontor
   SW-CORE-01
   SW-CORE-02
   SW-DIST-01
   SW-DIST-02
   SW-ACCESS-03
+SW-ACCESS-03 | offline
   SW-ACCESS-04
   SW-ACCESS-05
   RT-EDGE-01
@@ -12,14 +15,17 @@ Huvudkontor
   AP-FLOOR1-02
   AP-FLOOR2-01
   AP-FLOOR2-02
+AP-FLOOR2-02 | warning
   AP-FLOOR3-01
   FW-DMZ-01
 Lager
   SW-LAGER-01
   SW-LAGER-02
   RT-LAGER-01
+RT-LAGER-01 | warning
   AP-LAGER-01
   AP-LAGER-02
+AP-LAGER-02 | offline
 Kontor Malmö
   SW-MAL-CORE-01
   SW-MAL-ACC-01
@@ -33,6 +39,7 @@ Datacenter
   SW-DC-CORE-02
   SW-DC-TOR-01
   SW-DC-TOR-02
+SW-DC-TOR-02 | warning
   SW-DC-TOR-03
   RT-DC-EDGE-01
   FW-DC-01
