@@ -10,10 +10,6 @@ data = json.load(open("network_devices.json", "r", encoding = "utf-8"))
 
 report = ""
 
-#count variabel for counting types
-
-count = 0
-
 ## print company name and last_updated from json
 report += data["company"] + " | " + data["last_updated"] + "\n\n"
 
@@ -35,6 +31,7 @@ for location in data["locations"]:
             
 
 #variabele for counting units.Tried = 0 and it does not allow to find (what i cound find)
+
 count = {}
 
 ##loop list to find all variables in type and count them with "get" https://www.w3schools.com/python/ref_dictionary_get.asp
@@ -48,21 +45,46 @@ for location in data["locations"]:
 
 #writes this text to make document look better       
 report += "Type of devices:\n"
+
+
+
         
 ## for "x" in count (variable i created) write x + count in the text file. 
 for x in count:                       
     report += x +  ": " + str(count[x]) + "\n"
+
+
             
 #for text format            
 report += "\nDevices with less than 30 days uptime:\n"
 
+
+
+## all devices under 30 days uptime will be highlighted
 for location in data["locations"]:
     for device in location["devices"]:
         if device["uptime_days"] < 30:
             report += device["hostname"] + " | " + str(device["uptime_days"]) + " days\n"
-        
+
+
+port = {} ##create variable like in prev examples
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        ports = device.get("ports")
+        if ports: #kollar om port finns
+
+            
+            report += device["hostname"] + "  |  " 
+            report += "total:" + str(ports["total"]) + ", "
+            report += "used: " + str(ports["used"]) + ", "
+            report += "free: " + str(ports["free"]) + "\n"
+
         
 ##write the report to text file
+
+
+
 
 with open('report.txt', 'w', encoding='utf-8') as f:
     f.write(report)

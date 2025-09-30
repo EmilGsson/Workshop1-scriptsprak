@@ -67,3 +67,21 @@ RT-LAGER-01 | 2 days
 AP-LAGER-02 | 0 days
 SW-MAL-ACC-02 | 8 days
 SW-DC-TOR-02 | 5 days
+SW-CORE-01  |  total:48, used: 42, free: 6
+SW-CORE-02  |  total:48, used: 38, free: 10
+SW-DIST-01  |  total:24, used: 18, free: 6
+SW-DIST-02  |  total:24, used: 22, free: 2
+SW-ACCESS-03  |  total:24, used: 0, free: 24
+SW-ACCESS-04  |  total:24, used: 19, free: 5
+SW-ACCESS-05  |  total:24, used: 23, free: 1
+SW-LAGER-01  |  total:48, used: 12, free: 36
+SW-LAGER-02  |  total:48, used: 45, free: 3
+SW-MAL-CORE-01  |  total:48, used: 35, free: 13
+SW-MAL-ACC-01  |  total:24, used: 20, free: 4
+SW-MAL-ACC-02  |  total:24, used: 24, free: 0
+SW-DC-CORE-01  |  total:48, used: 46, free: 2
+SW-DC-CORE-02  |  total:48, used: 46, free: 2
+SW-DC-TOR-01  |  total:48, used: 48, free: 0
+SW-DC-TOR-02  |  total:48, used: 47, free: 1
+SW-DC-TOR-03  |  total:48, used: 44, free: 4
+SW-DR-01  |  total:28, used: 12, free: 16
