@@ -11,9 +11,11 @@ data = json.load(open("network_devices.json", "r", encoding = "utf-8"))
 report = ""
 
 ## print company name and last_updated from json
-report += "=======================================================================================\n" "\n"
-report += data["company"] + " | " + data["last_updated"] + "\n\n"
-report += "=======================================================================================\n" "\n"
+## use () to format text better
+report += (
+"=========================================================================================\n" + "\n" +
+ data["company"] + " | " + data["last_updated"] + "\n\n" + 
+"=========================================================================================\n" + "\n")
 
 ###########################################################################################################
 
@@ -53,17 +55,12 @@ for location in data["locations"]:
 report += "Type of devices in network:\n" 
 report += "-----------------------------------------------------------------------------------------\n"
 
-
-        
 ## for "x" in count (variable i created) write x + count in the text file. 
 for x in count:                       
-    report += x +  ": " + str(count[x]) + "\n"
-
-
-report += "-----------------------------------------------------------------------------------------\n"           
-#for text format            
-report += "\nDevices with less than 30 days uptime:\n" 
-report += "-----------------------------------------------------------------------------------------\n"
+    report += x +  ": " + str(count[x]) + "\n" 
+report +=("-----------------------------------------------------------------------------------------" + "\n\n" +
+"nDevices with less than 30 days uptime:\n" + 
+"-----------------------------------------------------------------------------------------\n")
 ## all devices under 30 days uptime will be highlighted
 for location in data["locations"]:
     for device in location["devices"]:
@@ -74,20 +71,29 @@ report += "---------------------------------------------------------------------
 
 port = {} ##create variable like in prev examples
 
+report += ("Total ports of all devices" + "\n" + 
+           "-----------------------------------------------------------------------------------------\n")
+
 for location in data["locations"]:
     for device in location["devices"]:
         ports = device.get("ports")
         if ports: #kollar om port finns
 
             ##print all variables (could not find way of printing all at same time. mby revisit)
+            
             report += device["hostname"] + "  |  " 
             report += "total:" + str(ports["total"]) + ", "
             report += "used: " + str(ports["used"]) + ", "
             report += "free: " + str(ports["free"]) + "\n"
 
 report += "-----------------------------------------------------------------------------------------\n"       
+
+
 ##write the report to text file
-report += "Vlans used by diffrent devices" "\n" ## format for dokument
+report += ("\nVlans used by diffrent devices" + "\n" + 
+"-----------------------------------------------------------------------------------------\n")
+
+## format for dokument
 for location in data["locations"]:
     for device in location["devices"]:
         vlan  = device.get("vlans")
@@ -96,15 +102,16 @@ for location in data["locations"]:
             
 
 
+report += ("-----------------------------------------------------------------------------------------\n\n" +
+"Total devices in region\n" + "-----------------------------------------------------------------------------------------\n")
 
 for location in data["locations"]:
     ## counters for each location. start at 0 and if loop correct, add one
     total = 0
     online = 0
-    offline = 0   # räknar allt som inte är "online" 
+    offline = 0   # count everything not online" 
 
-## loop through all devices in this location
-    for device in location["devices"]:
+    for device in location["devices"]:## loop through all devices in this location
         total += 1
         if device.get("status") == "online":
             online += 1
@@ -115,8 +122,7 @@ for location in data["locations"]:
     ## total = number of devices at this site
     ## online = how many are online
     ## offline = how many are not online
-    ## formatting for document
-    report += "------------------------------------" "\n"
+    
     report += location["site"] + " | total: " + str(total) + " | online: " + str(online) + " | offline: " + str(offline) + "\n"
 
 
