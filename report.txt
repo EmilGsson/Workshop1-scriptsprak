@@ -1,63 +1,29 @@
+=======================================================================================
+
 TechCorp AB | 2024-09-30T10:30:00
 
-Huvudkontor
-  SW-CORE-01
-  SW-CORE-02
-  SW-DIST-01
-  SW-DIST-02
-  SW-ACCESS-03
+=======================================================================================
+
+Units with problems
+-----------------------------------------------------------------------------------------
 SW-ACCESS-03 | offline
-  SW-ACCESS-04
-  SW-ACCESS-05
-  RT-EDGE-01
-  RT-EDGE-02
-  AP-FLOOR1-01
-  AP-FLOOR1-02
-  AP-FLOOR2-01
-  AP-FLOOR2-02
 AP-FLOOR2-02 | warning
-  AP-FLOOR3-01
-  FW-DMZ-01
-Lager
-  SW-LAGER-01
-  SW-LAGER-02
-  RT-LAGER-01
 RT-LAGER-01 | warning
-  AP-LAGER-01
-  AP-LAGER-02
 AP-LAGER-02 | offline
-Kontor Malmö
-  SW-MAL-CORE-01
-  SW-MAL-ACC-01
-  SW-MAL-ACC-02
-  RT-MAL-01
-  AP-MAL-01
-  AP-MAL-02
-  FW-MAL-01
-Datacenter
-  SW-DC-CORE-01
-  SW-DC-CORE-02
-  SW-DC-TOR-01
-  SW-DC-TOR-02
 SW-DC-TOR-02 | warning
-  SW-DC-TOR-03
-  RT-DC-EDGE-01
-  FW-DC-01
-  FW-DC-02
-  LB-DC-01
-  LB-DC-02
-Säkerhetskopia
-  SW-DR-01
-  RT-DR-01
-  FW-DR-01
-Type of devices:
+-----------------------------------------------------------------------------------------
+
+Type of devices in network:
+-----------------------------------------------------------------------------------------
 switch: 18
 router: 6
 access_point: 9
 firewall: 5
 load_balancer: 2
+-----------------------------------------------------------------------------------------
 
 Devices with less than 30 days uptime:
+-----------------------------------------------------------------------------------------
 SW-ACCESS-03 | 0 days
 SW-ACCESS-05 | 15 days
 AP-FLOOR2-01 | 12 days
@@ -67,6 +33,8 @@ RT-LAGER-01 | 2 days
 AP-LAGER-02 | 0 days
 SW-MAL-ACC-02 | 8 days
 SW-DC-TOR-02 | 5 days
+-----------------------------------------------------------------------------------------
+
 SW-CORE-01  |  total:48, used: 42, free: 6
 SW-CORE-02  |  total:48, used: 38, free: 10
 SW-DIST-01  |  total:24, used: 18, free: 6
@@ -85,3 +53,33 @@ SW-DC-TOR-01  |  total:48, used: 48, free: 0
 SW-DC-TOR-02  |  total:48, used: 47, free: 1
 SW-DC-TOR-03  |  total:48, used: 44, free: 4
 SW-DR-01  |  total:28, used: 12, free: 16
+-----------------------------------------------------------------------------------------
+Vlans used by diffrent devices
+SW-CORE-01  |  [10, 20, 30, 40, 50]
+SW-CORE-02  |  [10, 20, 30, 40, 50]
+SW-DIST-01  |  [10, 20]
+SW-DIST-02  |  [30, 40]
+SW-ACCESS-03  |  [10, 20, 30]
+SW-ACCESS-04  |  [10, 20]
+SW-ACCESS-05  |  [30, 40]
+SW-LAGER-01  |  [100, 200]
+SW-LAGER-02  |  [100, 200, 300]
+SW-MAL-CORE-01  |  [10, 20, 30, 110, 120]
+SW-MAL-ACC-01  |  [10, 20]
+SW-MAL-ACC-02  |  [110, 120]
+SW-DC-CORE-01  |  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+SW-DC-CORE-02  |  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+SW-DC-TOR-01  |  [100, 200, 300]
+SW-DC-TOR-02  |  [400, 500, 600]
+SW-DC-TOR-03  |  [700, 800, 900]
+SW-DR-01  |  [2000, 2100]
+------------------------------------
+Huvudkontor | total: 15 | online: 13 | offline: 2
+------------------------------------
+Lager | total: 5 | online: 3 | offline: 2
+------------------------------------
+Kontor Malmö | total: 7 | online: 7 | offline: 0
+------------------------------------
+Datacenter | total: 10 | online: 9 | offline: 1
+------------------------------------
+Säkerhetskopia | total: 3 | online: 3 | offline: 0
