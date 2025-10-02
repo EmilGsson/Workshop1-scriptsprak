@@ -9,13 +9,13 @@ Overview
 Total switch port usage: 541/676 (80.0%)
 
 Warnings: 
-AP-FLOOR2-02         |- warning    | access_point    | Huvudkontor         
-RT-LAGER-01          |- warning    | router          | Lager               
-SW-DC-TOR-02         |- warning    | switch          | Datacenter          
+AP-FLOOR2-02         | 192.168.20.102  | access_point    | Huvudkontor         
+RT-LAGER-01          | 192.168.2.254   | router          | Lager               
+SW-DC-TOR-02         | 10.0.1.2        | switch          | Datacenter          
 
 Offline: 
-SW-ACCESS-03         |- offline    | switch          | Huvudkontor         
-AP-LAGER-02          |- offline    | access_point    | Lager               
+SW-ACCESS-03         |- offline         | switch          | Huvudkontor         
+AP-LAGER-02          |- offline         | access_point    | Lager               
 -----------------------------------------------------------------------------------------
 
 Type of devices in network:

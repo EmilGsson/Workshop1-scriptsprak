@@ -51,8 +51,8 @@ for location in data["locations"]:
         if device["status"] != "online" and device["status"] != "offline" :
 
             report += (
-                    device["hostname"].ljust(20) + " |- "
-                     + device["status"].ljust(10) + " | "
+                    device["hostname"].ljust(20) + " | "
+                     + device["ip_address"].ljust(15) + " | "
                      + device["type"].ljust(15) + " | "
                      + location["site"].ljust(20)
                      + "\n")
@@ -67,7 +67,7 @@ for location in data["locations"]:
         if device["status"] != "online" and device["status"] != "warning":
            report += (
                  device["hostname"].ljust(20) + " |- "
-                + device["status"].ljust(10) + " | "
+                + device["status"].ljust(15) + " | "
                 + device["type"].ljust(15) + " | "
                 + location["site"].ljust(20)
                 + "\n"
@@ -139,7 +139,7 @@ report += "---------------------------------------------------------------------
 report += ("\nVlans used by diffrent devices" + "\n" + 
 "-----------------------------------------------------------------------------------------\n")
 
-## format for dokument
+## format for document
 for location in data["locations"]:
     for device in location["devices"]:
         vlan  = device.get("vlans")
