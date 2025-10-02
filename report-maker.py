@@ -18,7 +18,7 @@ report += (
  data["company"] + " | " + data["last_updated"] + "\n\n" + 
 "=========================================================================================\n" + "\n")
 
-
+report += "Executive summary"
 
   
 report += "Overview" + "\n-----------------------------------------------------------------------------------------\n"
@@ -66,8 +66,8 @@ for location in data["locations"]:
         # IF status != (is not) online, print status
         if device["status"] != "online" and device["status"] != "warning":
            report += (
-                 device["hostname"].ljust(20) + " |- "
-                + device["status"].ljust(15) + " | "
+                 device["hostname"].ljust(20) + " | "
+                + device["ip_address"].ljust(15) + " | "
                 + device["type"].ljust(15) + " | "
                 + location["site"].ljust(20)
                 + "\n"
@@ -115,8 +115,6 @@ port = {} ##create variable like in prev examples
 
 report += ("Total ports of all devices" + "\n" + 
            "-----------------------------------------------------------------------------------------\n")
-#used_ports = 0
-#total_ports = 0
 
 for location in data["locations"]:
     for device in location["devices"]:
@@ -128,9 +126,26 @@ for location in data["locations"]:
             report += device["hostname"] + "  |  " 
             report += "total:" + str(ports["total"]) + ", "
             report += "used: " + str(ports["used"]) + ", "
-            report += "free: " + str(ports["free"]) +"," 
-            report += "usage: " + str(percent) + "% \n"
+            report += "free: " + str(ports["free"]) +", " 
+            report += "usage: " + str(percent) + "% \n "
 
+total_used = 0
+total_ports = 0
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device.get("type") == "switch":
+            ports = device.get("ports")
+            if ports:
+                total_used += ports["used"]
+                total_ports += ports["total"]
+
+percent = round(total_used / total_ports * 100, 1)
+
+report += ("\n Total switch port usage: "
+            + str(total_used) + "/"
+            + str(total_ports) + " (" 
+            + str(percent) + "%)\n" + "\n")
             
 report += "-----------------------------------------------------------------------------------------\n"       
 
@@ -178,7 +193,11 @@ for location in data["locations"]:
     ## online = how many are online
     ## offline = how many are not online
     
-    report += location["site"] + " | total: " + str(total) + " | online: " + str(online) + " | offline: " + str(offline) + "\n"
+    report += (location["site"].ljust(15)
+    + " | total: " + str(total).ljust(8)
+    + " | online: " + str(online).ljust(8)
+    + " | offline: " + str(offline).ljust(8)
+    + "\n")
 
 
 

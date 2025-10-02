@@ -4,7 +4,7 @@ TechCorp AB | 2024-09-30T10:30:00
 
 =========================================================================================
 
-Overview
+Executive summaryOverview
 -----------------------------------------------------------------------------------------
 Total switch port usage: 541/676 (80.0%)
 
@@ -14,8 +14,8 @@ RT-LAGER-01          | 192.168.2.254   | router          | Lager
 SW-DC-TOR-02         | 10.0.1.2        | switch          | Datacenter          
 
 Offline: 
-SW-ACCESS-03         |- offline         | switch          | Huvudkontor         
-AP-LAGER-02          |- offline         | access_point    | Lager               
+SW-ACCESS-03         | 192.168.1.5     | switch          | Huvudkontor         
+AP-LAGER-02          | 192.168.200.102 | access_point    | Lager               
 -----------------------------------------------------------------------------------------
 
 Type of devices in network:
@@ -42,24 +42,27 @@ SW-DC-TOR-02 | 5 days
 
 Total ports of all devices
 -----------------------------------------------------------------------------------------
-SW-CORE-01  |  total:48, used: 42, free: 6,usage: 87.5% 
-SW-CORE-02  |  total:48, used: 38, free: 10,usage: 79.2% 
-SW-DIST-01  |  total:24, used: 18, free: 6,usage: 75.0% 
-SW-DIST-02  |  total:24, used: 22, free: 2,usage: 91.7% 
-SW-ACCESS-03  |  total:24, used: 0, free: 24,usage: 0.0% 
-SW-ACCESS-04  |  total:24, used: 19, free: 5,usage: 79.2% 
-SW-ACCESS-05  |  total:24, used: 23, free: 1,usage: 95.8% 
-SW-LAGER-01  |  total:48, used: 12, free: 36,usage: 25.0% 
-SW-LAGER-02  |  total:48, used: 45, free: 3,usage: 93.8% 
-SW-MAL-CORE-01  |  total:48, used: 35, free: 13,usage: 72.9% 
-SW-MAL-ACC-01  |  total:24, used: 20, free: 4,usage: 83.3% 
-SW-MAL-ACC-02  |  total:24, used: 24, free: 0,usage: 100.0% 
-SW-DC-CORE-01  |  total:48, used: 46, free: 2,usage: 95.8% 
-SW-DC-CORE-02  |  total:48, used: 46, free: 2,usage: 95.8% 
-SW-DC-TOR-01  |  total:48, used: 48, free: 0,usage: 100.0% 
-SW-DC-TOR-02  |  total:48, used: 47, free: 1,usage: 97.9% 
-SW-DC-TOR-03  |  total:48, used: 44, free: 4,usage: 91.7% 
-SW-DR-01  |  total:28, used: 12, free: 16,usage: 42.9% 
+SW-CORE-01  |  total:48, used: 42, free: 6, usage: 87.5% 
+ SW-CORE-02  |  total:48, used: 38, free: 10, usage: 79.2% 
+ SW-DIST-01  |  total:24, used: 18, free: 6, usage: 75.0% 
+ SW-DIST-02  |  total:24, used: 22, free: 2, usage: 91.7% 
+ SW-ACCESS-03  |  total:24, used: 0, free: 24, usage: 0.0% 
+ SW-ACCESS-04  |  total:24, used: 19, free: 5, usage: 79.2% 
+ SW-ACCESS-05  |  total:24, used: 23, free: 1, usage: 95.8% 
+ SW-LAGER-01  |  total:48, used: 12, free: 36, usage: 25.0% 
+ SW-LAGER-02  |  total:48, used: 45, free: 3, usage: 93.8% 
+ SW-MAL-CORE-01  |  total:48, used: 35, free: 13, usage: 72.9% 
+ SW-MAL-ACC-01  |  total:24, used: 20, free: 4, usage: 83.3% 
+ SW-MAL-ACC-02  |  total:24, used: 24, free: 0, usage: 100.0% 
+ SW-DC-CORE-01  |  total:48, used: 46, free: 2, usage: 95.8% 
+ SW-DC-CORE-02  |  total:48, used: 46, free: 2, usage: 95.8% 
+ SW-DC-TOR-01  |  total:48, used: 48, free: 0, usage: 100.0% 
+ SW-DC-TOR-02  |  total:48, used: 47, free: 1, usage: 97.9% 
+ SW-DC-TOR-03  |  total:48, used: 44, free: 4, usage: 91.7% 
+ SW-DR-01  |  total:28, used: 12, free: 16, usage: 42.9% 
+ 
+ Total switch port usage: 541/676 (80.0%)
+
 -----------------------------------------------------------------------------------------
 
 Vlans used by diffrent devices
@@ -89,8 +92,8 @@ Unique VLANs in the network (19):
 
 Total devices in region
 -----------------------------------------------------------------------------------------
-Huvudkontor | total: 15 | online: 13 | offline: 2
-Lager | total: 5 | online: 3 | offline: 2
-Kontor Malmö | total: 7 | online: 7 | offline: 0
-Datacenter | total: 10 | online: 9 | offline: 1
-Säkerhetskopia | total: 3 | online: 3 | offline: 0
+Huvudkontor     | total: 15       | online: 13       | offline: 2       
+Lager           | total: 5        | online: 3        | offline: 2       
+Kontor Malmö    | total: 7        | online: 7        | offline: 0       
+Datacenter      | total: 10       | online: 9        | offline: 1       
+Säkerhetskopia  | total: 3        | online: 3        | offline: 0       
