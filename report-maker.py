@@ -12,32 +12,69 @@ report = ""
 
 ## print company name and last_updated from json
 ## use () to format text better
+
 report += (
 "=========================================================================================\n" + "\n" +
  data["company"] + " | " + data["last_updated"] + "\n\n" + 
 "=========================================================================================\n" + "\n")
 
-###########################################################################################################
 
-#list of location, not needed. delete if bloat
-#loop location list
-#location lista av "locations" i json-fil
-##for location in data["locations"]:
-    #print the site
-   ## report += location ["site"] +"\n"
 
-###########################################################################################################  
   
-report += "Units with problems\n" + "-----------------------------------------------------------------------------------------" + "\n"
+report += "Overview" + "\n-----------------------------------------------------------------------------------------\n"
+##print total % usage of switch ports
+total_used = 0
+total_ports = 0
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device.get("type") == "switch":
+            ports = device.get("ports")
+            if ports:
+                total_used += ports["used"]
+                total_ports += ports["total"]
+
+percent = round(total_used / total_ports * 100, 1)
+
+report += ("Total switch port usage: "
+            + str(total_used) + "/"
+            + str(total_ports) + " (" 
+            + str(percent) + "%)\n" + "\n")
+
   
 #print hostname devicers on locations
+report += "Warnings: \n"
 for location in data["locations"]:
     for device in location ["devices"]:
        # report += "  " + device["hostname"] + "\n"
         # IF status != (is not) online, print status
-        if device["status"] != "online":
-            report +=  device["hostname"] + " | " + device ["status"] + "\n"
-        
+        if device["status"] != "online" and device["status"] != "offline" :
+
+            report += (
+                    device["hostname"].ljust(20) + " |- "
+                     + device["status"].ljust(10) + " | "
+                     + device["type"].ljust(15) + " | "
+                     + location["site"].ljust(20)
+                     + "\n")
+
+
+##same loop but print offline not warning
+report += "\n" + "Offline: \n"
+for location in data["locations"]:
+    for device in location ["devices"]:
+       # report += "  " + device["hostname"] + "\n"
+        # IF status != (is not) online, print status
+        if device["status"] != "online" and device["status"] != "warning":
+           report += (
+                 device["hostname"].ljust(20) + " |- "
+                + device["status"].ljust(10) + " | "
+                + device["type"].ljust(15) + " | "
+                + location["site"].ljust(20)
+                + "\n"
+)
+
+
+
 report += "-----------------------------------------------------------------------------------------\n" + "\n"
 
 
@@ -52,14 +89,16 @@ for location in data["locations"]:
         count [x] = count.get(x, 0) +1
 
 #writes this text to make document look better       
-report += "Type of devices in network:\n" 
-report += "-----------------------------------------------------------------------------------------\n"
+report += ("Type of devices in network:\n" + 
+"-----------------------------------------------------------------------------------------\n")
 
 ## for "x" in count (variable i created) write x + count in the text file. 
 for x in count:                       
     report += x +  ": " + str(count[x]) + "\n" 
+
+
 report +=("-----------------------------------------------------------------------------------------" + "\n\n" +
-"nDevices with less than 30 days uptime:\n" + 
+"Devices with less than 30 days uptime:\n" + 
 "-----------------------------------------------------------------------------------------\n")
 ## all devices under 30 days uptime will be highlighted
 for location in data["locations"]:
@@ -69,10 +108,15 @@ for location in data["locations"]:
 
 report += "-----------------------------------------------------------------------------------------\n" + "\n" 
 
+
+
+
 port = {} ##create variable like in prev examples
 
 report += ("Total ports of all devices" + "\n" + 
            "-----------------------------------------------------------------------------------------\n")
+#used_ports = 0
+#total_ports = 0
 
 for location in data["locations"]:
     for device in location["devices"]:
@@ -80,12 +124,14 @@ for location in data["locations"]:
         if ports: #kollar om port finns
 
             ##print all variables (could not find way of printing all at same time. mby revisit)
-            
+            percent = round(ports["used"] / ports["total"] * 100, 1)
             report += device["hostname"] + "  |  " 
             report += "total:" + str(ports["total"]) + ", "
             report += "used: " + str(ports["used"]) + ", "
-            report += "free: " + str(ports["free"]) + "\n"
+            report += "free: " + str(ports["free"]) +"," 
+            report += "usage: " + str(percent) + "% \n"
 
+            
 report += "-----------------------------------------------------------------------------------------\n"       
 
 
@@ -100,7 +146,16 @@ for location in data["locations"]:
         if vlan: #check if vlan exist
            report += device["hostname"] + "  |  " + str(vlan) + "\n" # print hostname and str(vlan) that uses device get to get list
             
+unique_vlans = set()
 
+for location in data["locations"]:
+    for device in location["devices"]:
+        for v in device.get("vlans", []):
+            unique_vlans.add(v)
+
+##report += "-----------------------------------------------------------------------------------------\n"
+report += "\n"+"Unique VLANs in the network (" + str(len(unique_vlans)) + "):\n"
+report += ", ".join(str(v) for v in sorted(unique_vlans)) + "\n"
 
 report += ("-----------------------------------------------------------------------------------------\n\n" +
 "Total devices in region\n" + "-----------------------------------------------------------------------------------------\n")
@@ -133,3 +188,17 @@ for location in data["locations"]:
 with open('report.txt', 'w', encoding='utf-8') as f:
     f.write(report)
     
+
+
+
+
+
+
+###########################################################################################################
+#list of location, not needed. delete if bloat
+#loop location list
+#location lista av "locations" i json-fil
+##for location in data["locations"]:
+    #print the site
+   ## report += location ["site"] +"\n"
+###########################################################################################################  
