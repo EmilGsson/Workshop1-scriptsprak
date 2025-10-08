@@ -18,7 +18,37 @@ report += (
  data["company"] + " | " + data["last_updated"] + "\n\n" + 
 "=========================================================================================\n" + "\n")
 
-report += "Executive summary"
+
+
+offline_count = 0
+warning_count = 0
+low_uptime_count = 0
+high_port_count = 0
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device["status"] == "offline":
+            offline_count += 1
+        elif device["status"] == "warning":
+            warning_count += 1
+        if device["uptime_days"] < 30:
+            low_uptime_count += 1
+        if device.get("type") == "switch" and "ports" in device:
+            ports = device["ports"]
+            if ports["total"] > 0:
+                percent = ports["used"] / ports["total"] * 100
+                if percent > 80:
+                    high_port_count += 1
+
+report += (
+    "EXECUTIVE SUMMARY\n"
+    + "-------------------------------------------------------------------------------------------\n"
+    + " Critical: ".ljust(40) + "{} devices offline\n".format(offline_count)
+    + " Warning: ".ljust(40) + "{} device warnings\n".format(warning_count)
+    + " Device with less than 30 days uptime: ".ljust(40) + "{}\n".format(low_uptime_count)
+    + " Switches with high port usage (>80%): ".ljust(40) + "{}\n\n".format(high_port_count)
+)
+
 
   
 report += "Overview" + "\n-----------------------------------------------------------------------------------------\n"
@@ -84,27 +114,26 @@ count = {} #variabele for counting units.Tried = 0 and it does not allow to find
 for location in data["locations"]:
     for device in location["devices"]:
         x = device.get("type")
-        ## this code under printed all types in the terminal showing my loop worked. just for fun
-        ###print (x) 
+        
         count [x] = count.get(x, 0) +1
 
 #writes this text to make document look better       
-report += ("Type of devices in network:\n" + 
+report += ("Type of devices in network: \n" + 
 "-----------------------------------------------------------------------------------------\n")
 
 ## for "x" in count (variable i created) write x + count in the text file. 
 for x in count:                       
-    report += x +  ": " + str(count[x]) + "\n" 
+    report += x.ljust(15) +  ":" + str(count[x]) + "\n" 
 
 
-report +=("-----------------------------------------------------------------------------------------" + "\n\n" +
+report +=("-------------------------------------------------------------------------------------" + "\n\n" +
 "Devices with less than 30 days uptime:\n" + 
 "-----------------------------------------------------------------------------------------\n")
 ## all devices under 30 days uptime will be highlighted
 for location in data["locations"]:
     for device in location["devices"]:
         if device["uptime_days"] < 30:
-            report += device["hostname"] + " | " + str(device["uptime_days"]) + " days\n"
+            report += device["hostname"].ljust(15) + " | ".ljust(4) + str(device["uptime_days"]) + " days\n"
 
 report += "-----------------------------------------------------------------------------------------\n" + "\n" 
 
@@ -113,8 +142,8 @@ report += "---------------------------------------------------------------------
 
 port = {} ##create variable like in prev examples
 
-report += ("Total ports of all devices" + "\n" + 
-           "-----------------------------------------------------------------------------------------\n")
+report += ("Switch ports with usage over 80%." + "\n" + 
+           "-----------------------------------------------------------------------------------------\n ")
 
 for location in data["locations"]:
     for device in location["devices"]:
@@ -123,11 +152,12 @@ for location in data["locations"]:
 
             ##print all variables (could not find way of printing all at same time. mby revisit)
             percent = round(ports["used"] / ports["total"] * 100, 1)
-            report += device["hostname"] + "  |  " 
-            report += "total:" + str(ports["total"]) + ", "
-            report += "used: " + str(ports["used"]) + ", "
-            report += "free: " + str(ports["free"]) +", " 
-            report += "usage: " + str(percent) + "% \n "
+            if percent >80:
+                report += device["hostname"].ljust(15) + "  |  " 
+                report += "total:" + str(ports["total"]) + ", "
+                report += "used: " + str(ports["used"]) + ", "
+                report += "free: " + str(ports["free"]) +", " 
+                report += "usage: " + str(percent) + "% \n "
 
 total_used = 0
 total_ports = 0
@@ -159,7 +189,7 @@ for location in data["locations"]:
     for device in location["devices"]:
         vlan  = device.get("vlans")
         if vlan: #check if vlan exist
-           report += device["hostname"] + "  |  " + str(vlan) + "\n" # print hostname and str(vlan) that uses device get to get list
+           report += device["hostname"].ljust(15) + "  |  " + str(vlan) + "\n" # print hostname and str(vlan) that uses device get to get list
             
 unique_vlans = set()
 
@@ -213,11 +243,3 @@ with open('report.txt', 'w', encoding='utf-8') as f:
 
 
 
-###########################################################################################################
-#list of location, not needed. delete if bloat
-#loop location list
-#location lista av "locations" i json-fil
-##for location in data["locations"]:
-    #print the site
-   ## report += location ["site"] +"\n"
-###########################################################################################################  

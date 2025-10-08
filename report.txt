@@ -4,7 +4,14 @@ TechCorp AB | 2024-09-30T10:30:00
 
 =========================================================================================
 
-Executive summaryOverview
+EXECUTIVE SUMMARY
+-------------------------------------------------------------------------------------------
+ Critical:                              2 devices offline
+ Warning:                               3 device warnings
+ Device with less than 30 days uptime:  9
+ Switches with high port usage (>80%):  11
+
+Overview
 -----------------------------------------------------------------------------------------
 Total switch port usage: 541/676 (80.0%)
 
@@ -18,48 +25,41 @@ SW-ACCESS-03         | 192.168.1.5     | switch          | Huvudkontor
 AP-LAGER-02          | 192.168.200.102 | access_point    | Lager               
 -----------------------------------------------------------------------------------------
 
-Type of devices in network:
+Type of devices in network: 
 -----------------------------------------------------------------------------------------
-switch: 18
-router: 6
-access_point: 9
-firewall: 5
-load_balancer: 2
------------------------------------------------------------------------------------------
+switch         :18
+router         :6
+access_point   :9
+firewall       :5
+load_balancer  :2
+-------------------------------------------------------------------------------------
 
 Devices with less than 30 days uptime:
 -----------------------------------------------------------------------------------------
-SW-ACCESS-03 | 0 days
-SW-ACCESS-05 | 15 days
-AP-FLOOR2-01 | 12 days
-AP-FLOOR2-02 | 2 days
-SW-LAGER-02 | 23 days
-RT-LAGER-01 | 2 days
-AP-LAGER-02 | 0 days
-SW-MAL-ACC-02 | 8 days
-SW-DC-TOR-02 | 5 days
+SW-ACCESS-03    |  0 days
+SW-ACCESS-05    |  15 days
+AP-FLOOR2-01    |  12 days
+AP-FLOOR2-02    |  2 days
+SW-LAGER-02     |  23 days
+RT-LAGER-01     |  2 days
+AP-LAGER-02     |  0 days
+SW-MAL-ACC-02   |  8 days
+SW-DC-TOR-02    |  5 days
 -----------------------------------------------------------------------------------------
 
-Total ports of all devices
+Switch ports with usage over 80%.
 -----------------------------------------------------------------------------------------
-SW-CORE-01  |  total:48, used: 42, free: 6, usage: 87.5% 
- SW-CORE-02  |  total:48, used: 38, free: 10, usage: 79.2% 
- SW-DIST-01  |  total:24, used: 18, free: 6, usage: 75.0% 
- SW-DIST-02  |  total:24, used: 22, free: 2, usage: 91.7% 
- SW-ACCESS-03  |  total:24, used: 0, free: 24, usage: 0.0% 
- SW-ACCESS-04  |  total:24, used: 19, free: 5, usage: 79.2% 
- SW-ACCESS-05  |  total:24, used: 23, free: 1, usage: 95.8% 
- SW-LAGER-01  |  total:48, used: 12, free: 36, usage: 25.0% 
- SW-LAGER-02  |  total:48, used: 45, free: 3, usage: 93.8% 
- SW-MAL-CORE-01  |  total:48, used: 35, free: 13, usage: 72.9% 
- SW-MAL-ACC-01  |  total:24, used: 20, free: 4, usage: 83.3% 
- SW-MAL-ACC-02  |  total:24, used: 24, free: 0, usage: 100.0% 
- SW-DC-CORE-01  |  total:48, used: 46, free: 2, usage: 95.8% 
- SW-DC-CORE-02  |  total:48, used: 46, free: 2, usage: 95.8% 
- SW-DC-TOR-01  |  total:48, used: 48, free: 0, usage: 100.0% 
- SW-DC-TOR-02  |  total:48, used: 47, free: 1, usage: 97.9% 
- SW-DC-TOR-03  |  total:48, used: 44, free: 4, usage: 91.7% 
- SW-DR-01  |  total:28, used: 12, free: 16, usage: 42.9% 
+ SW-CORE-01       |  total:48, used: 42, free: 6, usage: 87.5% 
+ SW-DIST-02       |  total:24, used: 22, free: 2, usage: 91.7% 
+ SW-ACCESS-05     |  total:24, used: 23, free: 1, usage: 95.8% 
+ SW-LAGER-02      |  total:48, used: 45, free: 3, usage: 93.8% 
+ SW-MAL-ACC-01    |  total:24, used: 20, free: 4, usage: 83.3% 
+ SW-MAL-ACC-02    |  total:24, used: 24, free: 0, usage: 100.0% 
+ SW-DC-CORE-01    |  total:48, used: 46, free: 2, usage: 95.8% 
+ SW-DC-CORE-02    |  total:48, used: 46, free: 2, usage: 95.8% 
+ SW-DC-TOR-01     |  total:48, used: 48, free: 0, usage: 100.0% 
+ SW-DC-TOR-02     |  total:48, used: 47, free: 1, usage: 97.9% 
+ SW-DC-TOR-03     |  total:48, used: 44, free: 4, usage: 91.7% 
  
  Total switch port usage: 541/676 (80.0%)
 
@@ -67,24 +67,24 @@ SW-CORE-01  |  total:48, used: 42, free: 6, usage: 87.5%
 
 Vlans used by diffrent devices
 -----------------------------------------------------------------------------------------
-SW-CORE-01  |  [10, 20, 30, 40, 50]
-SW-CORE-02  |  [10, 20, 30, 40, 50]
-SW-DIST-01  |  [10, 20]
-SW-DIST-02  |  [30, 40]
-SW-ACCESS-03  |  [10, 20, 30]
-SW-ACCESS-04  |  [10, 20]
-SW-ACCESS-05  |  [30, 40]
-SW-LAGER-01  |  [100, 200]
-SW-LAGER-02  |  [100, 200, 300]
-SW-MAL-CORE-01  |  [10, 20, 30, 110, 120]
-SW-MAL-ACC-01  |  [10, 20]
-SW-MAL-ACC-02  |  [110, 120]
-SW-DC-CORE-01  |  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-SW-DC-CORE-02  |  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-SW-DC-TOR-01  |  [100, 200, 300]
-SW-DC-TOR-02  |  [400, 500, 600]
-SW-DC-TOR-03  |  [700, 800, 900]
-SW-DR-01  |  [2000, 2100]
+SW-CORE-01       |  [10, 20, 30, 40, 50]
+SW-CORE-02       |  [10, 20, 30, 40, 50]
+SW-DIST-01       |  [10, 20]
+SW-DIST-02       |  [30, 40]
+SW-ACCESS-03     |  [10, 20, 30]
+SW-ACCESS-04     |  [10, 20]
+SW-ACCESS-05     |  [30, 40]
+SW-LAGER-01      |  [100, 200]
+SW-LAGER-02      |  [100, 200, 300]
+SW-MAL-CORE-01   |  [10, 20, 30, 110, 120]
+SW-MAL-ACC-01    |  [10, 20]
+SW-MAL-ACC-02    |  [110, 120]
+SW-DC-CORE-01    |  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+SW-DC-CORE-02    |  [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+SW-DC-TOR-01     |  [100, 200, 300]
+SW-DC-TOR-02     |  [400, 500, 600]
+SW-DC-TOR-03     |  [700, 800, 900]
+SW-DR-01         |  [2000, 2100]
 
 Unique VLANs in the network (19):
 10, 20, 30, 40, 50, 100, 110, 120, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 2100
